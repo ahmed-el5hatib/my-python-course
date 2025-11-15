@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دورة بايثون التفاعلية</title>
+    <!-- تحميل Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- خط Cairo و Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- تحميل مكتبة Prism.js لتمييز الأكواد (Syntax Highlighting) -->
+    <!-- 1. ملف الـ CSS (ثيم Tomorrow Night) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: #030712; /* gray-950 */
+            color: #d1d5db; /* gray-300 */
+        }
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827; /* gray-900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; /* gray-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; /* gray-600 */
+        }
+        
+        .lesson-content {
+            display: none;
+        }
+        .lesson-content.active {
+            display: block;
+        }
+        
+        /* تنسيق Prism.js ليتوافق مع Tailwind */
+        pre[class*="language-"] {
+            background: #111827; /* gray-900 */
+            border: 1px solid #1f2937; /* gray-800 */
+            border-radius: 8px;
+            padding: 1.25rem;
+            font-size: 0.95rem;
+            direction: ltr;
+        }
+        
+        /* جعل الخط في الكود أكبر قليلاً وأوضح */
+        code[class*="language-"],
+        pre[class*="language-"] {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+        }
+
+        .solution {
+            display: none;
+            border-top: 1px dashed #374151; /* gray-700 */
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-300">
+
+    <!-- القائمة الجانبية (Sidebar) -->
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-lg p-5 overflow-y-auto transition-transform duration-300 ease-in-out z-50 border-l border-gray-800">
+        <h1 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">دورة بايثون</h1>
+        <nav>
+            <ul class="space-y-2" id="sidebar-nav">
+                <!-- سيتم ملء هذه القائمة بواسطة JavaScript بناءً على الدروس -->
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main id="main-content" class="mr-64 p-8 md:p-12"> <!-- هامش أكبر ومساحة داخلية أكبر -->
+        
+        <!-- الدرس 1: المقدمة والأساسيات (مفعل كبداية) -->
+        <div id="lesson-1" class="lesson-content active space-y-8"> <!-- زيادة المسافات بين الأقسام -->
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 1: المقدمة، الإعداد، والأساسيات</h2>
+            
+            <!-- الشرح التفصيلي -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">1. الشرح التفصيلي</h3>
+                <p class="mb-4 text-lg leading-relaxed">
+                    مرحبًا بك في عالم بايثون! هذا القسم هو نقطة انطلاقك. سنتعلم كيف "نتحدث" مع الكمبيوتر باستخدام بايثون. سنبدأ بأبسط أمر وهو طباعة رسالة على الشاشة، ثم سنتعلم كيف نخزن المعلومات (البيانات) في الذاكرة باستخدام ما يسمى "بالمتغيرات".
+                </p>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-2xl font-semibold text-indigo-300 mb-3">المفاهيم الأساسية</h4>
+                    <ul class="list-disc list-inside space-y-3">
+                        <li>
+                            <strong>دالة `print()`</strong>:
+                            هذه هي أداتك الأساسية لإظهار النتائج. هي دالة جاهزة تأخذ "وسيط" (Argument) - مثل نص أو رقم - وتطبعه على الشاشة. النص الذي نكتبه مباشرة يسمى "Literal".
+                        </li>
+                        <li>
+                            <strong>المتغيرات (Variables)</strong>:
+                            تخيلها كصناديق في ذاكرة الكمبيوتر. كل صندوق له اسم فريد (مثل `my_age`) ويحتوي على قيمة (مثل `30`). في بايثون، نحن لا نصرح عن نوع المتغير؛ بايثون تعرف النوع تلقائيًا (Dynamic Typing).
+                        </li>
+                        <li>
+                            <strong>التعليقات (Comments)</strong>:
+                            نستخدم علامة الـ `#` لكتابة ملاحظات للمبرمجين. المترجم (Interpreter) الخاص ببايثون يتجاهل أي شيء يأتي بعد `#` في نفس السطر.
+                        </li>
+                        <li><strong>أنواع البيانات الأساسية (Data Types)</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-2 text-gray-400">
+                                <li><strong>النصوص (Strings)</strong>: `str`. سلسلة من الأحرف. يجب وضعها بين علامتي تنصيص: `"Hello"` أو `'Hello'`.</li>
+                                <li><strong>الأرقام الصحيحة (Integers)</strong>: `int`. أرقام كاملة بدون كسور (مثل: `5`, `-20`).</li>
+                                <li><strong>الأرقام العشرية (Floats)</strong>: `float`. أرقام تحتوي على فاصلة عشرية (مثل: `3.14`, `-0.5`).</li>
+                                <li><strong>القيم المنطقية (Booleans)</strong>: `bool`. تمثل حالتين فقط: `True` (صحيح) أو `False` (خطأ). (لاحظ الحرف الأول الكبير).</li>
+                                <li><strong>اللاشيء (NoneType)</strong>: `None`. نوع بيانات خاص يمثل "الغياب" أو "اللا قيمة".</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- أمثلة من الفيديو -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">2. أمثلة توضيحية</h3>
+                <p class="mb-3">أول برنامج لك وكيفية تعريف المتغيرات:</p>
+                <pre><code class="language-python">
+# 1. طباعة نص بسيط (String Literal) إلى الشاشة
+print("Hello, World!")
+
+# 2. تعريف المتغيرات بأنواع مختلفة
+# بايثون تعرف النوع تلقائيًا
+movie_title = "Inception"      # str
+release_year = 2010           # int
+rating = 8.8                  # float
+is_awesome = True             # bool
+director = None               # NoneType
+
+# 3. طباعة قيم المتغيرات
+print(movie_title)
+print(rating)
+                </code></pre>
+                
+                <p class="mt-6 mb-3">استقبال مدخلات من المستخدم وتحويل الأنواع:</p>
+                <pre><code class="language-python">
+# 1. دالة input() دائمًا ترجع قيمة نصية (string)
+user_name = input("ما هو اسمك؟ ")
+print("مرحبًا بك، " + user_name)
+
+# 2. نحتاج لتحويل النص إلى رقم لإجراء عمليات حسابية
+user_age_str = input("كم عمرك؟ ")
+
+# 3. نستخدم int() للتحويل إلى رقم صحيح
+user_age_int = int(user_age_str) 
+
+# 4. إجراء العملية الحسابية
+next_year_age = user_age_int + 1
+
+# 5. نحتاج لإعادة تحويل الرقم إلى نص للدمج (أو نستخدم F-String)
+print("عمرك العام القادم سيكون: " + str(next_year_age))
+                </code></pre>
+            </section>
+
+            <!-- تريكات وحيل -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">3. تريكات وحيل (Tricks & Tips)</h3>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 1: F-Strings (الأفضل لتنسيق النصوص)</h4>
+                    <p class="mb-3">بدلاً من استخدام `+` و `str()` لدمج النصوص والمتغيرات، استخدم `f-strings`. ضع حرف `f` قبل النص، وضع المتغيرات داخل `{}`.</p>
+                    <pre><code class="language-python">
+name = "أحمد"
+age = 30
+# لاحظ الـ f قبل علامة التنصيص
+print(f"اسمي هو {name} وعمري هو {age}")
+
+# يمكنك حتى إجراء عمليات داخلها
+print(f"عمري بعد 5 سنوات سيكون {age + 5}")
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 2: دالة `type()`</h4>
+                    <p class="mb-3">إذا لم تكن متأكدًا من نوع البيانات في متغير ما، استخدم `type()`.</p>
+                    <pre><code class="language-python">
+x = 10
+y = "10"
+z = 10.0
+
+print(f"نوع x: {type(x)}") # <class 'int'>
+print(f"نوع y: {type(y)}") # <class 'str'>
+print(f"نوع z: {type(z)}") # <class 'float'>
+                    </code></pre>
+                </div>
+            </section>
+
+            <!-- 10 مسائل تطبيقية -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">4. مسائل تطبيقية (متدرجة الصعوبة)</h3>
+                
+                <!-- المستوى 1: الأساسيات -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 1: الأساسيات (تطبيق مباشر)</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 1: المتغيرات</p>
+                        <p>قم بإنشاء ثلاث متغيرات: `book_title` (نص)، `page_count` (رقم صحيح)، `price` (رقم عشري). ثم اطبع كل متغير.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+book_title = "Python 101"
+page_count = 350
+price = 79.95
+
+print(book_title)
+print(page_count)
+print(price)
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 2: مدخلات المستخدم (Input)</p>
+                        <p>اكتب برنامج يسأل المستخدم عن لغة البرمجة المفضلة لديه، ثم يطبع "رائع! [اللغة] هي لغة قوية."</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+lang = input("ما هي لغة البرمجة المفضلة لديك؟ ")
+print(f"رائع! {lang} هي لغة قوية.")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 3: تحويل الأنواع (int)</p>
+                        <p>اطلب من المستخدم إدخال رقمين (كرقمين صحيحين)، ثم اطبع ناتج جمعهما.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+num1_str = input("أدخل الرقم الأول: ")
+num2_str = input("أدخل الرقم الثاني: ")
+
+num1 = int(num1_str)
+num2 = int(num2_str)
+
+print(f"الناتج: {num1 + num2}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 2: التحدي المتوسط -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 2: التحدي المتوسط (دمج المفاهيم)</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 4: حاسبة مساحة الدائرة</p>
+                        <p>اطلب من المستخدم إدخال نصف قطر دائرة (قد يكون عشريًا). احسب مساحة الدائرة (المساحة = 3.14 * نصف القطر ** 2) واطبع الناتج.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+PI = 3.14 # تعريف الثابت
+radius_str = input("أدخل نصف قطر الدائرة: ")
+
+radius = float(radius_str) # استخدام float للأرقام العشرية
+
+area = PI * (radius ** 2)
+print(f"مساحة الدائرة هي: {area}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 5: عملية F-String متقدمة</p>
+                        <p>لديك `product = "Coffee"` و `price = 15.5`. اطبع السعر بصيغة تحتوي على رقمين عشريين فقط: "Price: $15.50". (تلميح: استخدم `:.2f` داخل F-String).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+product = "Coffee"
+price = 15.5
+
+# :.2f تعني "تنسيق كرقم عشري (f) مع رقمين (2) بعد الفاصلة"
+print(f"Product: {product}, Price: ${price:.2f}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 6: القيم المنطقية والمقارنة</p>
+                        <p>لديك `my_age = 25` و `required_age = 18`. أنشئ متغيرًا `can_vote` يخزن ناتج المقارنة (هل `my_age` أكبر من أو يساوي `required_age`؟) واطبع الناتج.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+my_age = 25
+required_age = 18
+
+can_vote = (my_age >= required_age)
+print(f"هل يمكنني التصويت؟ {can_vote}") # سيطبع True
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 3: مشروع مصغر -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 3: مشروع مصغر</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 7: حاسبة فاتورة المطعم</p>
+                        <p>اكتب برنامجًا كاملاً:
+                        1. يسأل المستخدم عن سعر الوجبة (float).
+                        2. يسأل المستخدم عن نسبة الإكرامية التي يود دفعها (مثلاً: 15).
+                        3. يحسب قيمة الإكرامية (السعر * النسبة / 100).
+                        4. يحسب الفاتورة الإجمالية (السعر + الإكرامية).
+                        5. يطبع قيمة الإكرامية والإجمالي (منسقًا لرقمين عشريين).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+# 1. الحصول على المدخلات
+bill_str = input("أدخل سعر الوجبة: ")
+tip_percentage_str = input("أدخل نسبة الإكرامية (مثلاً 15): ")
+
+# 2. تحويل الأنواع
+bill = float(bill_str)
+tip_percentage = int(tip_percentage_str) # النسبة عادة رقم صحيح
+
+# 3. الحسابات
+tip_amount = bill * (tip_percentage / 100)
+total_bill = bill + tip_amount
+
+# 4. الطباعة (منسقة)
+print("\n--- تفاصيل الفاتورة ---")
+print(f"قيمة الإكرامية: {tip_amount:.2f}")
+print(f"الإجمالي للدفع: {total_bill:.2f}")
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 8: مولد اسم الفرقة (Band Name Generator)</p>
+                        <p>اكتب برنامجًا يسأل المستخدم عن اسم المدينة التي ولد فيها، واسم حيوانه الأليف الأول. ثم يدمجهما معًا ليقترح اسم فرقة.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+print("مرحبًا بك في مولد اسم الفرقة!")
+city = input("ما اسم المدينة التي ولدت فيها؟\n")
+pet_name = input("ما اسم حيوانك الأليف الأول؟\n")
+
+band_name = f"{city} {pet_name}"
+print(f"اسم فرقتك المقترح هو: {band_name}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 9: تبديل المتغيرات (تريكة)</p>
+                        <p>لديك `a = 10` و `b = 20`. كيف يمكنك تبديل قيمهما لتصبح `a = 20` و `b = 10` *بدون* استخدام متغير ثالث (مساعد)؟ (تلميح: هذه تريكة مشهورة في بايثون).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+a = 10
+b = 20
+print(f"قبل: a={a}, b={b}")
+
+# التريكة: التعيين المتعدد (Multiple Assignment)
+a, b = b, a
+
+print(f"بعد: a={a}, b={b}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 10: حساب عدد الثواني</p>
+                        <p>اطلب من المستخدم إدخال عدد الساعات، وعدد الدقائق، وعدد الثواني. ثم احسب مجموع الثواني الكلي واطبعه.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+hours = int(input("أدخل عدد الساعات: "))
+minutes = int(input("أدخل عدد الدقائق: "))
+seconds = int(input("أدخل عدد الثواني: "))
+
+# 1 ساعة = 60 * 60 = 3600 ثانية
+# 1 دقيقة = 60 ثانية
+total_seconds = (hours * 3600) + (minutes * 60) + seconds
+
+print(f"إجمالي عدد الثواني هو: {total_seconds}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- الدرس 2: هياكل البيانات -->
+        <div id="lesson-2" class="lesson-content space-y-8">
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 2: هياكل البيانات (Lists, Tuples, Sets, Dictionaries)</h2>
+            
+            <!-- الشرح التفصيلي -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">1. الشرح التفصيلي</h3>
+                <p class="mb-4 text-lg leading-relaxed">
+                    هياكل البيانات (أو "المجموعات" - Collections) تسمح لنا بتخزين مجموعات من القيم في متغير واحد. كل هيكل له خصائصه وطريقة استخدامه.
+                </p>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                <ul class="list-disc list-inside space-y-3">
+                    <li><strong>القوائم (Lists)</strong>: `[]`
+                        <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                            <li>هي حاويات <strong>مرتبة</strong> (Ordered) <strong>وقابلة للتعديل</strong> (Mutable).</li>
+                            <li>نصل للعناصر عن طريق "الفهرس" (Index) الذي يبدأ من 0.</li>
+                            <li>يمكننا تعديلها (إضافة، حذف، تغيير عناصر) في أي وقت. هي الأكثر شيوعًا.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tuples</strong>: `()`
+                        <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                            <li>مثل القوائم، هي <strong>مرتبة</strong>، ولكنها <strong>غير قابلة للتعديل</strong> (Immutable).</li>
+                            <li>بمجرد إنشائها، لا يمكن تغيير عناصرها. أسرع من القوائم وتستخدم للبيانات الثابتة.</li>
+                        </ul>
+                    </li>
+                    <li><strong>القواميس (Dictionaries)</strong>: `{}`
+                        <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                            <li>حاويات تخزن البيانات على هيئة <strong>مفتاح: قيمة (Key: Value)</strong>.</li>
+                            <li><strong>قابلة للتعديل</strong>. نصل إلى القيم باستخدام "المفتاح" (Key) بدلاً من الفهرس.</li>
+                        </ul>
+                    </li>
+                    <li><strong>المجموعات (Sets)</strong>: `{}`
+                        <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                            <li>حاويات <strong>غير مرتبة</strong> وتضمن <strong>عدم تكرار العناصر</strong>.</li>
+                            <li>فائدتها الرئيسية هي إزالة التكرارات وإجراء العمليات الرياضية (اتحاد، تقاطع).</li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+            </section>
+
+            <!-- أمثلة من الفيديو -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">2. أمثلة توضيحية</h3>
+                <p class="mb-3">التعامل مع القوائم (Lists):</p>
+                <pre><code class="language-python">
+# إنشاء قائمة
+my_list = ["apple", "banana", "cherry"]
+print(f"القائمة: {my_list}")
+
+# الوصول للعنصر الأول (الفهرس 0)
+print(f"العنصر الأول: {my_list[0]}")
+
+# الوصول للعنصر الأخير (الفهرس -1)
+print(f"العنصر الأخير: {my_list[-1]}")
+
+# إضافة عنصر (في النهاية)
+my_list.append("orange")
+print(f"بعد الإضافة: {my_list}")
+
+# حذف عنصر (بمعرفة القيمة)
+my_list.remove("banana")
+print(f"بعد الحذف: {my_list}")
+
+# حذف عنصر (بمعرفة الفهرس)
+popped_item = my_list.pop(0) # حذف "apple" وإرجاعه
+print(f"العنصر المحذوف: {popped_item}")
+print(f"القائمة الآن: {my_list}")
+                </code></pre>
+                
+                <p class="mt-6 mb-3">التعامل مع القواميس (Dictionaries):</p>
+                <pre><code class="language-python">
+# إنشاء قاموس
+student = {
+    "name": "أحمد",
+    "age": 25,
+    "major": "Computer Science"
+}
+print(f"القاموس: {student}")
+
+# الوصول لقيمة باستخدام المفتاح
+print(f"الاسم: {student['name']}")
+
+# إضافة مفتاح وقيمة جديدة
+student["gpa"] = 3.8
+print(f"بعد إضافة المعدل: {student}")
+
+# تعديل قيمة
+student["age"] = 26
+print(f"بعد تعديل العمر: {student}")
+                </code></pre>
+            </section>
+
+            <!-- تريكات وحيل -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">3. تريكات وحيل (Tricks & Tips)</h3>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 1: التحقق من الوجود `in`</h4>
+                    <p class="mb-3">استخدم الكلمة المفتاحية `in` للتحقق مما إذا كان عنصر موجودًا في قائمة (بحث بال قيمة) أو مفتاح موجودًا في قاموس (بحث بالمفتاح).</p>
+                    <pre><code class="language-python">
+my_list = [10, 20, 30]
+print(f"هل 20 موجودة؟ {20 in my_list}") # True
+
+student = {"name": "سارة", "age": 22}
+print(f"هل 'age' مفتاح موجود؟ {'age' in student}") # True
+print(f"هل 'سارة' موجودة؟ {'سارة' in student}") # False (لأن 'in' تبحث في المفاتيح)
+                    </code></pre>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 2: الوصول الآمن للقاموس `.get()`</h4>
+                    <p class="mb-3">إذا حاولت الوصول لمفتاح غير موجود `student['job']` سيتوقف البرنامج (Error). استخدم `.get()`، فإذا لم يجد المفتاح، سيعيد `None` (أو قيمة افتراضية) بدون إيقاف البرنامج.</p>
+                    <pre><code class="language-python">
+student = {"name": "سارة", "age": 22}
+# print(student['job']) # هذا سيسبب خطأ
+
+# الطريقة الآمنة
+job = student.get('job')
+print(f"الوظيفة: {job}") # None
+
+# الطريقة الآمنة مع قيمة افتراضية
+job_default = student.get('job', 'طالب')
+print(f"الوظيفة: {job_default}") # طالب
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 3: إزالة التكرار بـ `set`</h4>
+                    <p class="mb-3">أسرع طريقة لإزالة التكرار من قائمة هي تحويلها إلى `set` ثم إعادتها إلى `list`.</p>
+                    <pre><code class="language-python">
+numbers = [1, 2, 2, 3, 1, 4, 5, 2, 3]
+unique_numbers = list(set(numbers))
+print(unique_numbers) # [1, 2, 3, 4, 5] (الترتيب قد يختلف)
+                    </code></pre>
+                </div>
+            </section>
+
+            <!-- 10 مسائل تطبيقية -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">4. مسائل تطبيقية (متدرجة الصعوبة)</h3>
+                
+                <!-- المستوى 1: الأساسيات -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 1: الأساسيات</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 1: قائمة التسوق</p>
+                        <p>أنشئ قائمة `shopping_list` تحتوي على "لبن"، "خبز"، "بيض". ثم اطبع العنصر الثاني.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+shopping_list = ["لبن", "خبز", "بيض"]
+# العنصر الثاني يعني الفهرس 1
+print(shopping_list[1])
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 2: إضافة وحذف</p>
+                        <p>ابدأ بنفس القائمة. أضف "تفاح" للنهاية. احذف "لبن". اطبع القائمة النهائية.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+shopping_list = ["لبن", "خبز", "بيض"]
+shopping_list.append("تفاح")
+shopping_list.remove("لبن")
+print(shopping_list)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 3: قاموس بيانات شخصية</p>
+                        <p>أنشئ قاموسًا `user_profile` ببيانات: "username" (ali123)، "email" (ali@example.com)، "is_active" (True).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+user_profile = {
+    "username": "ali123",
+    "email": "ali@example.com",
+    "is_active": True
+}
+print(user_profile)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 2: التحدي المتوسط -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 2: التحدي المتوسط</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 4: تعديل القاموس</p>
+                        <p>باستخدام القاموس السابق، غيّر "email" إلى "ali.new@example.com". وأضف "city" (Cairo). اطبع القاموس.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+user_profile = {
+    "username": "ali123",
+    "email": "ali@example.com",
+    "is_active": True
+}
+user_profile["email"] = "ali.new@example.com"
+user_profile["city"] = "Cairo"
+print(user_profile)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 5: التحقق من الطول `len()`</p>
+                        <p>لديك قاموس `grades = {"Math": 90, "History": 85}`. اطبع عدد المواد المسجلة في القاموس.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+grades = {"Math": 90, "History": 85}
+print(f"عدد المواد: {len(grades)}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 6: التحقق من الوجود `in`</p>
+                        <p>لديك قائمة `allowed_colors = ["red", "green", "blue"]`. اطلب من المستخدم إدخال لون، ثم اطبع `True` إذا كان اللون مسموحًا به، و `False` إذا لم يكن.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+allowed_colors = ["red", "green", "blue"]
+user_color = input("أدخل لونًا (أحرف صغيرة): ")
+print(user_color in allowed_colors)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 7: استخدام `.get()`</p>
+                        <p>لديك قاموس `config = {"theme": "dark"}`. اطبع قيمة "theme". ثم اطبع قيمة "font_size"، وإذا لم تكن موجودة، اطبع القيمة الافتراضية `14`.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+config = {"theme": "dark"}
+print(f"Theme: {config.get('theme')}")
+print(f"Font Size: {config.get('font_size', 14)}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 3: مشروع مصغر -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 3: مشروع مصغر</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 8: Slicing (تقسيم القائمة)</p>
+                        <p>لديك قائمة `url = "https://example.com/products/item1"`. قم بتقسيم (Split) النص عند علامة `/` للحصول على قائمة بالأجزاء.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+# هذه تريكة إضافية (ميثود .split() للنصوص)
+url = "https://example.com/products/item1"
+parts = url.split("/")
+print(parts)
+# الناتج: ['https:', '', 'example.com', 'products', 'item1']
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 9: قائمة داخل قاموس</p>
+                        <p>أنشئ قاموسًا `playlist` لمفتاح "name" (قيمته: "My Favorites")، ومفتاح "songs" (قيمته: *قائمة* بأسماء 3 أغانٍ). ثم قم بإضافة أغنية رابعة إلى قائمة الأغاني.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+playlist = {
+    "name": "My Favorites",
+    "songs": ["Song 1", "Song 2", "Song 3"]
+}
+# للوصول للقائمة داخل القاموس
+playlist["songs"].append("Song 4")
+print(playlist)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 10: مشروع (بيانات اتصال)</p>
+                        <p>اطلب من المستخدم إدخال 3 أشياء: اسمه، إيميله، ورقم هاتفه. قم بتخزينها في *قاموس* `contact` ثم اطبع القاموس.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+name = input("أدخل الاسم: ")
+email = input("أدخل الإيميل: ")
+phone = input("أدخل الهاتف: ")
+
+# إنشاء قاموس فارغ
+contact = {}
+
+# ملء القاموس
+contact["name"] = name
+contact["email"] = email
+contact["phone"] = phone
+
+print("تم حفظ بيانات الاتصال:")
+print(contact)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- الدرس 3: المنطق والشروط -->
+        <div id="lesson-3" class="lesson-content space-y-8">
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 3: العمليات والمنطق والشروط</h2>
+            
+            <!-- الشرح التفصيلي -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">1. الشرح التفصيلي</h3>
+                <p class="mb-4 text-lg leading-relaxed">
+                    هذا هو جوهر البرمجة: جعل البرنامج يتخذ قرارات. نستخدم الشروط (Conditions) للتحكم في مسار تنفيذ الكود بناءً على ما إذا كان الشرط `True` (صحيح) أو `False` (خطأ).
+                </p>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-2xl font-semibold text-indigo-300 mb-3">المفاهيم الأساسية</h4>
+                    <ul class="list-disc list-inside space-y-3">
+                        <li><strong>عمليات المقارنة (Comparison Operators)</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                                <li>`==` (يساوي): هل 5 == 5؟ (True)</li>
+                                <li>`!=` (لا يساوي): هل 5 != 10؟ (True)</li>
+                                <li>`>` (أكبر من): هل 10 > 5؟ (True)</li>
+                                <li>`<` (أصغر من): هل 10 < 5؟ (False)</li>
+                                <li>`>=` (أكبر من أو يساوي)</li>
+                                <li>`<=` (أصغر من أو يساوي)</li>
+                            </ul>
+                        </li>
+                        <li><strong>أمر `if`</strong>: ينفذ الكود الذي يليه (المزاح بمسافة بادئة) فقط إذا كان الشرط `True`.</li>
+                        <li><strong>أمر `else`</strong>: (اختياري) ينفذ الكود الذي يليه إذا كان شرط `if` الرئيسي `False`.</li>
+                        <li><strong>أمر `elif`</strong>: (اختياري، اختصار لـ "else if") يسمح لك بإضافة شروط متعددة للتحقق منها بالترتيب.</li>
+                        <li><strong>العمليات المنطقية (Logical Operators)</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                                <li>`and`: يجب أن يكون كلا الشرطين `True` ليكون الناتج `True`.</li>
+                                <li>`or`: يكفي أن يكون شرط واحد `True` ليكون الناتج `True`.</li>
+                                <li>`not`: يعكس الحالة (يحول `True` إلى `False` والعكس).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- أمثلة من الفيديو -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">2. أمثلة توضيحية</h3>
+                <p class="mb-3">مثال على `if`, `elif`, `else`:</p>
+                <pre><code class="language-python">
+# نحول المدخل إلى رقم صحيح فورًا
+age = int(input("أدخل عمرك: "))
+
+if age >= 18:
+    print("أنت بالغ، يمكنك التصويت.")
+elif age >= 13:
+    print("أنت مراهق.")
+else:
+    print("أنت طفل.")
+                </code></pre>
+                
+                <p class="mt-6 mb-3">مثال على `and`, `or`, `not`:</p>
+                <pre><code class="language-python">
+# and: يجب أن يكون المستخدم طالبًا وعمره فوق 18 للحصول على خصم
+is_student = True
+age = 20
+
+if is_student and age > 18:
+    print("مؤهل للخصم (طالب وبالغ)")
+else:
+    print("غير مؤهل للخصم")
+
+# or: يكفي أن يكون المستخدم إما مدير أو مشرف للدخول
+is_admin = False
+is_supervisor = True
+
+if is_admin or is_supervisor:
+    print("لديك صلاحية الدخول.")
+else:
+    print("ليس لديك صلاحية.")
+                </code></pre>
+            </section>
+
+            <!-- تريكات وحيل -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">3. تريكات وحيل (Tricks & Tips)</h3>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 1: القيم الصادقة والكاذبة (Truthy & Falsy)</h4>
+                    <p class="mb-3">في بايثون، لا تحتاج دائمًا لكتابة `if len(my_list) > 0`. يمكنك كتابة `if my_list:` فقط. بايثون تعتبر القوائم/النصوص الفارغة، الرقم `0`، و `None` كقيم `False` (Falsy). أي شيء آخر يعتبر `True` (Truthy).</p>
+                    <pre><code class="language-python">
+my_name = input("أدخل اسمك (أو اتركه فارغًا): ")
+
+# إذا كان النص my_name فارغًا ("")، سيعتبر Falsy
+if my_name:
+    print(f"مرحبًا، {my_name}")
+else:
+    print("مرحبًا أيها الغريب.")
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 2: المقارنات المتسلسلة</h4>
+                    <p class="mb-3">بدلاً من كتابة `if x > 10 and x < 20`، يمكنك في بايثون كتابتها بشكل رياضي: `if 10 < x < 20`.</p>
+                    <pre><code class="language-python">
+temp = 25
+if 20 < temp < 30:
+    print("الطقس دافئ ومثالي.")
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 3: المعامل الثلاثي (Ternary Operator)</h4>
+                    <p class="mb-3">طريقة لاختصار `if/else` بسيط في سطر واحد.</p>
+                    <pre><code class="language-python">
+age = 22
+#       [القيمة إذا كان True] if [الشرط] else [القيمة إذا كان False]
+status = "بالغ" if age >= 18 else "قاصر"
+print(status)
+                    </code></pre>
+                </div>
+            </section>
+
+            <!-- 10 مسائل تطبيقية -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">4. مسائل تطبيقية (متدرجة الصعوبة)</h3>
+                
+                <!-- المستوى 1: الأساسيات -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 1: الأساسيات</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 1: زوجي أم فردي؟</p>
+                        <p>اطلب من المستخدم إدخال رقم صحيح. تحقق إذا كان زوجيًا (`% 2 == 0`) أو فرديًا واطبع رسالة مناسبة.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+number = int(input("أدخل رقمًا صحيحًا: "))
+
+if number % 2 == 0:
+    print("هذا رقم زوجي.")
+else:
+    print("هذا رقم فردي.")
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 2: موجب أم سالب أم صفر؟</p>
+                        <p>اطلب من المستخدم إدخال رقم. تحقق إذا كان موجبًا، سالبًا، أو يساوي صفرًا.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+number = float(input("أدخل رقمًا: "))
+
+if number > 0:
+    print("الرقم موجب.")
+elif number < 0:
+    print("الرقم سالب.")
+else:
+    print("الرقم يساوي صفرًا.")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 3: التحقق من كلمة المرور</p>
+                        <p>اطلب من المستخدم إدخال كلمة مرور. إذا كانت "Python123"، اطبع "تم الدخول". وإلا، اطبع "خطأ".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+password = input("أدخل كلمة المرور: ")
+
+if password == "Python123":
+    print("تم تسجيل الدخول.")
+else:
+    print("كلمة مرور خاطئة.")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 2: التحدي المتوسط -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 2: التحدي المتوسط</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 4: عملية `and`</p>
+                        <p>اطلب من المستخدم إدخال درجة حرارة. إذا كانت *بين* 20 و 30 (شاملة)، اطبع "الطقس مثالي!". (استخدم `and` أو المقارنة المتسلسلة).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+temp = float(input("أدخل درجة الحرارة: "))
+
+# طريقة بايثون (تريكة)
+if 20 <= temp <= 30:
+     print("الطقس مثالي!")
+else:
+     print("الطقس ليس مثاليًا.")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 5: عملية `or` (تنظيف المدخلات)</p>
+                        <p>اطلب من المستخدم إدخال يوم من الأسبوع. إذا كان اليوم "الجمعة" أو "السبت" (بغض النظر عن حالة الأحرف أو المسافات الزائدة)، اطبع "عطلة!". (تلميح: استخدم `.lower()` و `.strip()`).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+day = input("أدخل اليوم: ")
+
+# .strip() لإزالة المسافات الزائدة من البداية والنهاية
+# .lower() لتحويلها كلها إلى أحرف صغيرة للمقارنة
+clean_day = day.strip().lower() 
+
+if clean_day == "الجمعة" or clean_day == "السبت":
+    print("عطلة نهاية أسبوع سعيدة!")
+else:
+    print("يوم عمل موفق.")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 6: التحقق من `in` في قائمة</p>
+                        <p>لديك `allowed_users = ["admin", "moderator"]`. اطلب من المستخدم إدخال اسم المستخدم. إذا كان اسمه في القائمة، اطبع "مرحبًا بك".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+allowed_users = ["admin", "moderator"]
+username = input("أدخل اسم المستخدم: ")
+
+if username in allowed_users:
+    print("مرحبًا بك.")
+else:
+    print("ليس لديك صلاحية.")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 3: مشروع مصغر -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 3: مشروع مصغر</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 7: "Truthy" و "Falsy"</p>
+                        <p>اطلب من المستخدم إدخال تعليق. إذا أدخل تعليقًا (نص غير فارغ)، اطبع "شكرًا لتعليقك". إذا ضغط Enter (نص فارغ)، اطبع "لم تدخل تعليقًا".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+comment = input("أدخل تعليقك: ")
+
+# النص الفارغ "" يعتبر Falsy
+if comment:
+    print("شكرًا لتعليقك.")
+else:
+    print("لم تدخل تعليقًا.")
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 8: حاسبة التقديرات</p>
+                        <p>اطلب من المستخدم إدخال درجته (من 100).
+                        اطبع "ممتاز" إذا كانت 90 فأكثر.
+                        اطبع "جيد جدًا" إذا كانت 80-89.
+                        اطبع "جيد" إذا كانت 70-79.
+                        اطبع "مقبول" إذا كانت 60-69.
+                        اطبع "راسب" إذا كانت أقل من 60.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+score = int(input("أدخل درجتك (من 100): "))
+
+if score >= 90:
+    print("ممتاز")
+elif score >= 80:
+    print("جيد جدًا")
+elif score >= 70:
+    print("جيد")
+elif score >= 60:
+    print("مقبول")
+else:
+    print("راسب")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 9: المعامل الثلاثي (Ternary)</p>
+                        <p>لديك `score = 75`. استخدم المعامل الثلاثي لإنشاء متغير `result` يحتوي على "ناجح" إذا كانت الدرجة 50 أو أعلى، و "راسب" إذا كانت أقل.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+score = 75
+result = "ناجح" if score >= 50 else "راسب"
+print(result)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 10: التحقق من القاموس الآمن</p>
+                        <p>لديك قاموس `product = {"name": "Laptop", "price": 5000}`.
+                        اطلب من المستخدم مفتاحًا (key) للبحث عنه.
+                        إذا كان المفتاح موجودًا، اطبع قيمته.
+                        إذا لم يكن موجودًا (استخدم `else` مع `if...in`)، اطبع "هذا المفتاح غير موجود".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+product = {"name": "Laptop", "price": 5000}
+key_to_find = input("أدخل المفتاح للبحث عنه: ") # (جرب price أو color)
+
+if key_to_find in product:
+    print(f"القيمة هي: {product[key_to_find]}")
+else:
+    print("هذا المفتاح غير موجود.")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- الدرس 4: الحلقات التكرارية (Loops) -->
+        <div id="lesson-4" class="lesson-content space-y-8">
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 4: الحلقات التكرارية (Loops)</h2>
+            
+            <!-- الشرح التفصيلي -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">1. الشرح التفصيلي</h3>
+                <p class="mb-4 text-lg leading-relaxed">
+                    الحلقات التكرارية تتيح لنا تنفيذ نفس الكتلة من الكود عدة مرات، مما يوفر علينا إعادة كتابة الكود. هناك نوعان رئيسيان في بايثون: `for` و `while`.
+                </p>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-2xl font-semibold text-indigo-300 mb-3">المفاهيم الأساسية</h4>
+                    <ul class="list-disc list-inside space-y-3">
+                        <li><strong>حلقة `for` (For Loops)</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                                <li>تُستخدم للتكرار على "تسلسل" (Sequence) معروف مسبقًا، مثل قائمة، tuple، نص، أو `range`.</li>
+                                <li>تأخذ عنصرًا واحدًا من التسلسل في كل مرة وتنفذ الكود عليه.</li>
+                                <li><strong>دالة `range()`</strong>: تُستخدم لإنشاء تسلسل من الأرقام. `range(5)` تعني (0, 1, 2, 3, 4).</li>
+                            </ul>
+                        </li>
+                        <li><strong>حلقة `while` (While Loops)</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                                <li>تستمر في التكرار طالما أن الشرط المحدد هو `True`.</li>
+                                <li>نحن مسؤولون عن تغيير المتغير داخل الحلقة حتى يصبح الشرط `False` في النهاية، وإلا سندخل في "حلقة لا نهائية" (Infinite Loop).</li>
+                            </ul>
+                        </li>
+                        <li><strong>أوامر التحكم بالحلقات</strong>:
+                            <ul class="list-decimal list-inside mr-6 mt-2 space-y-1 text-gray-400">
+                                <li>`break`: يكسر الحلقة ويخرج منها فورًا.</li>
+                                <li>`continue`: يتجاهل باقي الكود في هذه التكرارة الحالية وينتقل إلى التكرارة التالية.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- أمثلة من الفيديو -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">2. أمثلة توضيحية</h3>
+                <p class="mb-3">مثال على حلقة `for` (طباعة عناصر قائمة):</p>
+                <pre><code class="language-python">
+fruits = ["تفاح", "موز", "كرز"]
+
+# 'fruit' هو متغير مؤقت يأخذ قيمة كل عنصر بالترتيب
+for fruit in fruits:
+    print(f"أنا أحب {fruit}")
+
+# استخدام range() للطباعة 3 مرات
+for i in range(3):
+    print(f"الرقم {i}") # سيطبع 0, 1, 2
+                </code></pre>
+                
+                <p class="mt-6 mb-3">مثال على حلقة `while` (العد التنازلي):</p>
+                <pre><code class="language-python">
+count = 5
+
+while count > 0:
+    print(count)
+    count = count - 1 # أو (count -= 1) - مهم جدًا لتجنب حلقة لا نهائية
+    
+print("انطلاق!")
+                </code></pre>
+
+                <p class="mt-6 mb-3">مثال على `break` و `continue`:</p>
+                <pre><code class="language-python">
+# مثال break: توقف عند العثور على أول رقم سالب
+numbers = [1, 5, 9, -2, 4, 8]
+for num in numbers:
+    if num < 0:
+        print("تم العثور على رقم سالب، سنتوقف.")
+        break
+    print(f"الرقم {num} موجب.")
+
+# مثال continue: طباعة الأرقام الفردية فقط
+for i in range(1, 11): # الأرقام من 1 إلى 10
+    if i % 2 == 0: # إذا كان الرقم زوجيًا
+        continue # تخطى هذه التكرارة
+    print(f"رقم فردي: {i}")
+                </code></pre>
+            </section>
+
+            <!-- تريكات وحيل -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">3. تريكات وحيل (Tricks & Tips)</h3>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 1: `enumerate()`</h4>
+                    <p class="mb-3">إذا كنت تحتاج إلى الفهرس (الترتيب) والقيمة أثناء التكرار في قائمة، استخدم `enumerate()`.</p>
+                    <pre><code class="language-python">
+names = ["علي", "سارة", "يوسف"]
+# ابدأ العد من 1
+for index, name in enumerate(names, start=1):
+    print(f"الطالب رقم {index} هو {name}")
+                    </code></pre>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 2: التكرار على القواميس `.items()`</h4>
+                    <p class="mb-3">استخدم `.items()` للتكرار والحصول على المفتاح والقيمة معًا.</p>
+                    <pre><code class="language-python">
+student_grades = {"Math": 90, "Science": 95}
+for subject, grade in student_grades.items():
+    print(f"الدرجة في {subject} هي {grade}")
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 3: `else` مع الحلقات</h4>
+                    <p class="mb-3">(نادرة الاستخدام) يمكن إضافة `else` في نهاية حلقة `for` أو `while`. يتم تنفيذها *فقط* إذا اكتملت الحلقة بشكل طبيعي (أي لم يتم إيقافها بـ `break`).</p>
+                    <pre><code class="language-python">
+# البحث عن رقم أكبر من 10
+nums = [1, 3, 5, 7]
+for n in nums:
+    if n > 10:
+        print("تم العثور على رقم كبير")
+        break
+else:
+    # هذا الكود سيعمل لأن الحلقة لم تنكسر (break)
+    print("لم يتم العثور على أي رقم كبير.")
+                    </code></pre>
+                </div>
+            </section>
+
+            <!-- 10 مسائل تطبيقية -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">4. مسائل تطبيقية (متدرجة الصعوبة)</h3>
+                
+                <!-- المستوى 1: الأساسيات -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 1: الأساسيات</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 1: طباعة الأرقام</p>
+                        <p>استخدم `range()` لطباعة الأرقام من 1 إلى 5 (شاملة).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+# range(1, 6) تعني ابدأ من 1 وتوقف قبل 6
+for i in range(1, 6):
+    print(i)
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 2: العد التنازلي بـ `while`</p>
+                        <p>استخدم `while` لطباعة الأرقام من 3 إلى 1.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+n = 3
+while n >= 1:
+    print(n)
+    n = n - 1 # أو n -= 1
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 3: مجموع قائمة</p>
+                        <p>لديك `numbers = [10, 20, 30, 40]`. استخدم حلقة `for` لحساب مجموع كل الأرقام واطبعه. (لا تستخدم `sum()`).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+numbers = [10, 20, 30, 40]
+total = 0 # نبدأ بمخزن قيمته صفر
+
+for num in numbers:
+    total = total + num # أو total += num
+
+print(f"المجموع هو: {total}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 2: التحدي المتوسط -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 2: التحدي المتوسط</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 4: التكرار على نص</p>
+                        <p>لديك كلمة `word = "Python"`. استخدم حلقة `for` لطباعة كل حرف من الكلمة في سطر منفصل.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+word = "Python"
+for char in word:
+    print(char)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 5: البحث عن عنصر (Break)</p>
+                        <p>لديك `items = ["Pen", "Book", "Key", "Phone"]`. ابحث عن "Key". إذا وجدتها، اطبع "تم العثور على المفتاح!" وتوقف عن البحث (استخدم `break`).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+items = ["Pen", "Book", "Key", "Phone"]
+for item in items:
+    print(f"يتم فحص: {item}")
+    if item == "Key":
+        print("تم العثور على المفتاح!")
+        break
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 6: طباعة الأرقام الزوجية (Continue)</p>
+                        <p>استخدم `range(1, 11)`. اطبع الرقم *فقط* إذا كان زوجيًا. (تلميح: استخدم `%` و `continue` للأرقام الفردية).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+for i in range(1, 11):
+    if i % 2 != 0: # إذا كان الرقم فرديًا
+        continue # تخطى، لا تكمل الحلقة
+    print(f"رقم زوجي: {i}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 3: مشروع مصغر -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 3: مشروع مصغر</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 7: التكرار على قاموس</p>
+                        <p>لديك `scores = {"Ali": 80, "Mona": 92}`. استخدم `.items()` لطباعة اسم كل طالب ودرجته.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+scores = {"Ali": 80, "Mona": 92}
+for name, score in scores.items():
+    print(f"{name} حصل على {score}")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 8: حلقة `while` مع `input`</p>
+                        <p>اكتب برنامج يستمر في سؤال المستخدم "قل كلمة السر:" حتى يكتب المستخدم كلمة "open".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+password = "" # نهيئ المتغير
+while password != "open":
+    password = input("قل كلمة السر: ")
+
+print("مرحبًا بك!")
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 9: قائمة جديدة بأحرف كبيرة</p>
+                        <p>لديك `words = ["hello", "world"]`. أنشئ قائمة جديدة `upper_words` واملأها بالنسخ الكبيرة (Uppercase) من الكلمات باستخدام `for`.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+words = ["hello", "world"]
+upper_words = [] # قائمة فارغة
+
+for word in words:
+    upper_words.append(word.upper())
+
+print(upper_words)
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 10: `enumerate`</p>
+                        <p>لديك `menu = ["Pizza", "Burger", "Salad"]`. استخدم `enumerate` لطباعة القائمة كرقم 1، 2، 3 (وليس 0، 1، 2).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+menu = ["Pizza", "Burger", "Salad"]
+# enumerate(menu, 1) تعني ابدأ العد من 1
+for index, item in enumerate(menu, 1):
+    print(f"{index}. {item}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- الدرس 5: الدوال (Functions) -->
+        <div id="lesson-5" class="lesson-content space-y-8">
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 5: الدوال (Functions)</h2>
+            
+            <!-- الشرح التفصيلي -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">1. الشرح التفصيلي</h3>
+                <p class="mb-4 text-lg leading-relaxed">
+                    الدوال هي كتل بناء أساسية في البرمجة. إنها كتل من الكود منظمة وقابلة لإعادة الاستخدام، مصممة لأداء مهمة محددة. بدلاً من تكرار نفس الكود، نكتبه مرة واحدة داخل دالة ونقوم "باستدعائها" (Call) كلما احتجنا إليه.
+                </p>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-2xl font-semibold text-indigo-300 mb-3">المفاهيم الأساسية</h4>
+                    <ul class="list-disc list-inside space-y-3">
+                        <li><strong>التعريف (Defining)</strong>: نستخدم الكلمة المفتاحية `def` متبوعة باسم الدالة وأقواس `()`.</li>
+                        <li><strong>الاستدعاء (Calling)</strong>: نكتب اسم الدالة متبوعًا بالأقواس `()` لتنفيذ الكود بداخلها.</li>
+                        <li><strong>المعاملات (Parameters)</strong>: هي المتغيرات التي نعرّفها داخل الأقواس `()` عند تعريف الدالة، لاستقبال قيم من الخارج.</li>
+                        <li><strong>الوسائط (Arguments)</strong>: هي القيم الفعلية التي نمررها للدالة عند استدعائها.</li>
+                        <li><strong>القيمة المُرجعة (Return Value)</strong>: نستخدم `return` لإخراج قيمة من الدالة. إذا لم نستخدم `return`، فإن الدالة تعيد `None` افتراضيًا.</li>
+                        <li><strong>القيم الافتراضية (Default Arguments)</strong>: يمكننا إعطاء المعاملات قيمًا افتراضية تُستخدم إذا لم يمرر المستخدم قيمة عند الاستدعاء.</li>
+                        <li><strong>نطاق المتغيرات (Scope)</strong>: المتغيرات المعرفة *داخل* الدالة (Local Scope) لا يمكن الوصول إليها من *خارج* الدالة.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- أمثلة من الفيديو -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">2. أمثلة توضيحية</h3>
+                <p class="mb-3">دالة بسيطة (بدون معاملات أو إرجاع):</p>
+                <pre><code class="language-python">
+# 1. تعريف الدالة
+def greet():
+    print("مرحبًا بك في بايثون!")
+    print("الدوال تجعل الكود منظمًا.")
+
+# 2. استدعاء الدالة (يمكن استدعاؤها عدة مرات)
+greet()
+greet()
+                </code></pre>
+                
+                <p class="mt-6 mb-3">دالة بمعاملات (Parameters) وإرجاع (Return):</p>
+                <pre><code class="language-python">
+# 'a' و 'b' هما معاملات (Parameters)
+def add_numbers(a, b):
+    total = a + b
+    return total # إرجاع القيمة
+
+# 5 و 10 هما وسائط (Arguments)
+sum_result = add_numbers(5, 10)
+
+print(f"الناتج هو: {sum_result}")
+print(f"ناتج آخر: {add_numbers(100, 50)}")
+                </code></pre>
+
+                <p class="mt-6 mb-3">دالة بقيمة افتراضية:</p>
+                <pre><code class="language-python">
+# "Guest" هي قيمة افتراضية للمعامل name
+def welcome_user(name="Guest"):
+    print(f"أهلاً بك، {name}")
+
+welcome_user("أحمد") # استخدام القيمة الممررة
+welcome_user()       # استخدام القيمة الافتراضية
+                </code></pre>
+            </section>
+
+            <!-- تريكات وحيل -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">3. تريكات وحيل (Tricks & Tips)</h3>
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 1: سلاسل التوثيق (Docstrings)</h4>
+                    <p class="mb-3">هي أول شيء تكتبه داخل الدالة، محاطًا بثلاث علامات تنصيص `"""`. تُستخدم لشرح وظيفة الدالة، معاملاتها، وما تُرجعه. وهي ضرورية جدًا للاحترافية.</p>
+                    <pre><code class="language-python">
+def say_hello(name):
+    """
+    تطبع رسالة ترحيب مخصصة.
+    
+    Args:
+        name (str): اسم الشخص المراد تحيته.
+    """
+    print(f"مرحبًا، {name}!")
+
+# يمكن للمحررات قراءة هذا التوضيح
+say_hello("علي")
+                    </code></pre>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 2: تلميحات النوع (Type Hinting)</h4>
+                    <p class="mb-3">(اختياري) يمكن تحديد أنواع المعاملات والقيمة المرجعة المتوقعة. هذا لا يغير سلوك الكود، ولكنه يساعد المحررات والمبرمجين الآخرين على فهم الكود.</p>
+                    <pre><code class="language-python">
+# (name: str) -> str
+# يعني: المعامل 'name' يتوقع أن يكون 'str'
+# و (-> str) تعني: الدالة يتوقع أن ترجع 'str'
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+print(greet("World"))
+                    </code></pre>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mt-4">
+                    <h4 class="text-xl font-semibold text-indigo-300 mb-2">تريكة 3: إرجاع قيم متعددة</h4>
+                    <p class="mb-3">يمكن للدالة إرجاع قيم متعددة (والتي يتم إرجاعها فعليًا كـ `Tuple`).</p>
+                    <pre><code class="language-python">
+def get_user_info():
+    name = "Ali"
+    age = 33
+    return name, age # إرجاع قيمتين
+
+# استقبال القيمتين
+user_name, user_age = get_user_info()
+print(f"{user_name} is {user_age} years old.")
+                    </code></pre>
+                </div>
+            </section>
+
+            <!-- 10 مسائل تطبيقية -->
+            <section>
+                <h3 class="text-3xl font-semibold text-white mb-4">4. مسائل تطبيقية (متدرجة الصعوبة)</h3>
+                
+                <!-- المستوى 1: الأساسيات -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 1: الأساسيات</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 1: طباعة رسالة</p>
+                        <p>أنشئ دالة `show_message` لا تأخذ أي معاملات، وعند استدعائها تطبع "أنا أتعلم الدوال!".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def show_message():
+    print("أنا أتعلم الدوال!")
+
+show_message()
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 2: دالة بمعامل واحد</p>
+                        <p>أنشئ دالة `greet_person` تأخذ `name`. عند `greet_person("Mona")`، تطبع "مرحبًا يا Mona".</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def greet_person(name):
+    print(f"مرحبًا يا {name}")
+
+greet_person("Mona")
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 3: دالة `return`</p>
+                        <p>أنشئ دالة `multiply` تأخذ رقمين (`a`, `b`) وتُرجع (return) ناتج ضربهما.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def multiply(a, b):
+    return a * b
+
+result = multiply(7, 5)
+print(result) # 35
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 2: التحدي المتوسط -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 2: التحدي المتوسط</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 4: دالة منطقية (Boolean)</p>
+                        <p>أنشئ دالة `is_even` تأخذ رقمًا. إذا كان زوجيًا، تُرجع `True`، وإذا كان فرديًا، تُرجع `False`.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+
+# طريقة مختصرة (تريكة)
+# def is_even(number):
+#     return number % 2 == 0
+
+print(f"هل 10 زوجي؟ {is_even(10)}") # True
+print(f"هل 7 زوجي؟ {is_even(7)}")  # False
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 5: دالة بقيمة افتراضية</p>
+                        <p>أنشئ دالة `calculate_tax` تأخذ `price` ومعدل ضريبة `tax_rate` بقيمة افتراضية `0.14` (14%). الدالة تُرجع قيمة الضريبة.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def calculate_tax(price, tax_rate=0.14):
+    """يحسب قيمة الضريبة لسعر معين."""
+    return price * tax_rate
+
+# استخدام القيمة الافتراضية (14%)
+print(calculate_tax(100)) # 14.0
+
+# استخدام قيمة ممررة (ضريبة 5%)
+print(calculate_tax(100, 0.05)) # 5.0
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 6: دالة تتعامل مع قائمة</p>
+                        <p>أنشئ دالة `find_largest_number` تأخذ قائمة أرقام، وتُرجع أكبر رقم فيها. (استخدم دالة `max()` الجاهزة داخل دالتك).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def find_largest_number(numbers):
+    """يرجع أكبر رقم من قائمة. يرجع None إذا كانت القائمة فارغة."""
+    if not numbers: # تريكة (Falsy) للتحقق إذا كانت القائمة فارغة
+        return None
+    return max(numbers)
+
+print(find_largest_number([10, 5, 80, 25])) # 80
+print(find_largest_number([]))             # None
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المستوى 3: مشروع مصغر -->
+                <h4 class="text-2xl font-semibold text-indigo-300 mb-3 mt-6">المستوى 3: مشروع مصغر</h4>
+                <div class="space-y-4">
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 7: دالة تتعامل مع قاموس</p>
+                        <p>أنشئ دالة `get_user_email` تأخذ قاموس `user`. تُرجع قيمة "email". استخدم `.get()` لترجع "Email not found" إذا لم يكن المفتاح موجودًا.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def get_user_email(user_dict):
+    """يرجع الإيميل من قاموس مستخدم."""
+    return user_dict.get("email", "Email not found")
+
+user1 = {"name": "Ahmed", "email": "ahmed@dev.com"}
+user2 = {"name": "Sara"}
+
+print(get_user_email(user1))
+print(get_user_email(user2))
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 8: دالة بإرجاع متعدد</p>
+                        <p>أنشئ دالة `get_min_max` تأخذ قائمة أرقام. الدالة يجب أن تُرجع (في أمر `return` واحد) كلاً من *أصغر* رقم (`min()`) و *أكبر* رقم (`max()`).</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def get_min_max(numbers):
+    """يرجع أصغر وأكبر رقم في قائمة."""
+    if not numbers:
+        return None, None # إرجاع Tuple من None
+        
+    smallest = min(numbers)
+    largest = max(numbers)
+    return smallest, largest # إرجاع قيمتين (كـ Tuple)
+
+my_nums = [10, 5, 80, 25]
+# استقبال القيمتين
+min_val, max_val = get_min_max(my_nums)
+
+print(f"الأصغر: {min_val}, الأكبر: {max_val}")
+</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 9: دمج الدوال</p>
+                        <p>استخدم الدالة `is_even` (من م4) و `add_numbers` (من م2). أنشئ دالة ثالثة `sum_if_even` تأخذ رقمين، إذا كان *كلاهما* زوجي (استخدم `is_even`)، تُرجع مجموعهما (استخدم `add_numbers`)، وإلا تُرجع 0.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+# نفترض أن الدالتين معرفتان مسبقًا
+def add_numbers(a, b):
+    return a + b
+
+def is_even(number):
+    return number % 2 == 0
+
+# --- الدالة الجديدة ---
+def sum_if_even(num1, num2):
+    if is_even(num1) and is_even(num2):
+        return add_numbers(num1, num2)
+    else:
+        return 0
+
+print(f"ناتج (4, 6): {sum_if_even(4, 6)}") # 10
+print(f"ناتج (4, 5): {sum_if_even(4, 5)}") # 0
+</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <p class="font-semibold">المسألة 10: مشروع (حاسبة المتوسط)</p>
+                        <p>أنشئ دالة `calculate_average` تأخذ قائمة درجات.
+                        1. احسب المجموع (استخدم `sum()`).
+                        2. احسب العدد (استخدم `len()`).
+                        3. تُرجع المتوسط (المجموع / العدد).
+                        4. (تحدي إضافي): تأكد من أن القائمة ليست فارغة قبل القسمة.</p>
+                        <button class="solution-toggle mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-3 rounded text-sm">إظهار/إخفاء الحل</button>
+                        <div class="solution">
+<pre><code class="language-python">
+def calculate_average(grades):
+    """يحسب متوسط قائمة من الدرجات."""
+    # (التحدي الإضافي)
+    if not grades:
+        return 0.0 # لا يمكن القسمة على صفر
+        
+    total = sum(grades)
+    count = len(grades)
+    average = total / count
+    return average
+
+grades_list = [80, 90, 100, 85]
+avg = calculate_average(grades_list)
+print(f"متوسط الدرجات هو: {avg}")
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- الدرس 6: البرمجة كائنية التوجه (OOP) -->
+        <div id="lesson-6" class="lesson-content">
+            <h2 class="text-4xl font-bold text-indigo-400 mb-6">الدرس 6: البرمجة كائنية التوجه (OOP)</h2>
+            <p class="text-xl text-yellow-400">... المحتوى قيد الإنشاء ...</p>
+        </div>
+        <!-- تم حذف باقي الدروس -->
+
+    </main>
+
+    <!-- تحميل مكتبة Prism.js (يجب أن يكون في نهاية الـ body) -->
+    <!-- 2. ملف الـ JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <script>
+        // تعريف الدروس (بناءً على تحليل الفيديو)
+        // تم الاكتفاء بالدروس 1-5 بناءً على طلبك
+        const lessons = [
+            { id: 1, title: "1. المقدمة والأساسيات" },
+            { id: 2, title: "2. هياكل البيانات" },
+            { id: 3, title: "3. المنطق والشروط" },
+            { id: 4, title: "4. الحلقات التكرارية (Loops)" },
+            { id: 5, title: "5. الدوال (Functions)" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarNav = document.getElementById('sidebar-nav');
+            const lessonContents = document.querySelectorAll('.lesson-content');
+
+            // ملء القائمة الجانبية بالدروس
+            lessons.forEach(lesson => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#lesson-${lesson.id}`;
+                a.textContent = lesson.title;
+                // تحديث الـ Style
+                a.classList.add('block', 'py-2', 'px-4', 'rounded', 'text-gray-300', 'hover:bg-gray-700', 'hover:text-white', 'transition-colors', 'duration-200', 'cursor-pointer', 'sidebar-link');
+                if (lesson.id === 1) {
+                    a.classList.add('bg-indigo-600', 'text-white'); // تفعيل الدرس الأول باللون الجديد
+                }
+                li.appendChild(a);
+                sidebarNav.appendChild(li);
+            });
+
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+            // وظيفة التبديل بين الدروس
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1); // مثل: "lesson-1"
+
+                    // إخفاء كل الدروس
+                    lessonContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    // إزالة التظليل من كل الروابط
+                    sidebarLinks.forEach(lnk => {
+                        lnk.classList.remove('bg-indigo-600', 'text-white');
+                    });
+
+                    // إظهار الدرس المستهدف
+                    const activeLesson = document.getElementById(targetId);
+                    if (activeLesson) {
+                        activeLesson.classList.add('active');
+                    }
+
+                    // تظليل الرابط الحالي
+                    this.classList.add('bg-indigo-600', 'text-white');
+
+                    // التمرير لأعلى الصفحة عند التبديل
+                    window.scrollTo(0, 0);
+                    
+                    // إعادة تفعيل Prism على المحتوى الجديد (قد لا تكون ضرورية مع autoloader)
+                    // Prism.highlightAll(); 
+                });
+            });
+
+            // وظيفة إظهار/إخفاء الحلول
+            // تم تحديث الـ Style
+            const solutionToggles = document.querySelectorAll('.solution-toggle');
+            solutionToggles.forEach(button => {
+                button.addEventListener('click', function() {
+                    const solutionDiv = this.nextElementSibling;
+                    if (solutionDiv.style.display === 'block') {
+                        solutionDiv.style.display = 'none';
+                        this.textContent = "إظهار الحل";
+                    } else {
+                        solutionDiv.style.display = 'block';
+                        this.textContent = "إخفاء الحل";
+                        // التأكد من أن Prism يلون الكود عند إظهاره
+                        Prism.highlightAllUnder(solutionDiv);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
